@@ -1,0 +1,24 @@
+flex token.l
+gcc lex.yy.c -o token
+./token
+
+bison -d syntax.y
+flex syntax.l
+gcc syntax.tab.c lex.yy.c -o syntax
+./syntax
+
+bison -d tac.y
+flex tac.l
+gcc tac.tab.c lex.yy.c -o tac
+./tac
+
+yacc -d syntax.y
+lex syntax.l
+gcc y.tab.c lex.yy.c -o syntax -ll
+./syntax
+
+
+yacc -d tac.y
+lex tac.l
+gcc y.tab.c lex.yy.c -o tac -ll
+./tac
